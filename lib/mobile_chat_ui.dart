@@ -24,6 +24,7 @@ class Chat extends StatefulWidget {
       this.emptyWidget = const EmptyWidget(),
       this.authorDetailsLocation = AuthorDetailsLocation.bottom,
       this.onSend,
+      this.controller,
       this.onImageSelected})
       : super(key: key);
 
@@ -63,15 +64,19 @@ class Chat extends StatefulWidget {
   /// Determine the location of a authors details;
   final AuthorDetailsLocation authorDetailsLocation;
 
+  // Scroll controller
+  final ScrollController? controller;
+
   @override
   State<Chat> createState() => _ChatState();
 }
 
 class _ChatState extends State<Chat> {
-  final ScrollController scrollController = ScrollController();
+  late ScrollController scrollController;
 
   @override
   void initState() {
+    scrollController = widget.controller ?? ScrollController();
     super.initState();
   }
 
