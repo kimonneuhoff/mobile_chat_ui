@@ -13,11 +13,13 @@ import 'message.dart';
 class ImageMessage extends Message {
   String? caption;
   final String uri;
+  final Function()? onTap;
   ImageMessage(
       {required super.author,
       required super.time,
       super.stage,
       required this.uri,
+      this.onTap,
       this.caption});
 
   @override
@@ -55,14 +57,15 @@ class ImageMessage extends Message {
           ),
         ),
         caption != null
-            ? Padding(
-                padding: theme.messagePadding,
-                child: TextContainer(
-                  text: caption!,
-                  style: author.id == loggedInUser.id
-                      ? theme.outwardMessageTextStyle
-                      : theme.inwardMessageTextStyle,
-                  linkStyle: theme.urlTextStyle,
+            ? GestureDetector(
+                onTap: onTap,
+                child: Padding(
+                  padding: theme.messagePadding,
+                  child: TextContainer(
+                    text: caption!,
+                    style: theme.captionTextstyle,
+                    linkStyle: theme.urlTextStyle,
+                  ),
                 ),
               )
             : Container(),
