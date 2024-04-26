@@ -120,6 +120,7 @@ class _ChatState extends State<Chat> {
       child: ListView.builder(
         controller: scrollController,
         itemCount: widget.messages.length,
+        reverse: true,
         itemBuilder: (BuildContext context, index) => widget.messages[index]
             .builder(
                 context,
