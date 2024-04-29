@@ -70,11 +70,11 @@ class _ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (detailsLocation == AuthorDetailsLocation.top)
-          Column(children: [_authorsDetails(), const SizedBox(height: 5)]),
+        // if (detailsLocation == AuthorDetailsLocation.top)
+        //   Column(children: [_authorsDetails(), const SizedBox(height: 5)]),
         DecoratedBox(
           decoration: BoxDecoration(
             color: theme.inwardMessageBackgroundColor,
@@ -82,8 +82,12 @@ class _ChatMessage extends StatelessWidget {
           ),
           child: IntrinsicWidth(child: child),
         ),
-        if (detailsLocation == AuthorDetailsLocation.bottom)
-          Column(children: [const SizedBox(height: 5), _authorsDetails()]),
+        const SizedBox(
+          width: 12,
+        ),
+        _authorsDetails()
+        // if (detailsLocation == AuthorDetailsLocation.bottom)
+        //   Column(children: [const SizedBox(height: 5), _authorsDetails()]),
       ],
     );
   }
@@ -107,7 +111,7 @@ class _ChatMessage extends StatelessWidget {
               if (user.isVerified) theme.verificationBadge else Container(),
             ],
           ),
-        const SizedBox(width: 10),
+        if (showName) const SizedBox(width: 10),
         Text(
           time,
           style: theme.timeTextStyle,
