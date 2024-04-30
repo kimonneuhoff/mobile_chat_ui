@@ -70,23 +70,29 @@ class _ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicWidth(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          if (detailsLocation == AuthorDetailsLocation.top)
-            Column(children: [_authorDetails(), const SizedBox(height: 5)]),
-          Container(
-            decoration: BoxDecoration(
-              color: theme.outwardMessageBackgroundColor,
-              borderRadius: theme.outwardMessageBorderRadius,
-            ),
-            child: IntrinsicWidth(child: child),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          time,
+          style: theme.timeTextStyle,
+          textAlign: TextAlign.end,
+        ),
+        const SizedBox(
+          width: 12,
+        ),
+        // if (detailsLocation == AuthorDetailsLocation.top)
+        //   Column(children: [_authorDetails(), const SizedBox(height: 5)]),
+        Container(
+          decoration: BoxDecoration(
+            color: theme.outwardMessageBackgroundColor,
+            borderRadius: theme.outwardMessageBorderRadius,
           ),
-          if (detailsLocation == AuthorDetailsLocation.bottom)
-            Column(children: [const SizedBox(height: 5), _authorDetails()]),
-        ],
-      ),
+          child: IntrinsicWidth(child: child),
+        ),
+        // if (detailsLocation == AuthorDetailsLocation.bottom)
+        //   Column(children: [const SizedBox(height: 5), _authorDetails()]),
+      ],
     );
   }
 
